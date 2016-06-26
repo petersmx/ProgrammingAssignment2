@@ -1,12 +1,13 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These two functions calculate the inverse of a matrix and cache 
+## it into memory
 
-## Write a short comment describing this function
+
+
+## This function creates a cache in memory for the inverted matrix
 
 makeCacheMatrix <- function(x = matrix()) {
     
-    #from mean example
-    #browser()
+    #checks to see if variable "m" is initialized
     if(!exists("m")){
         m <- NULL
     }
@@ -25,14 +26,13 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Calculates inverse of matrix 'x' if x inverse not already stored
+## in memory
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
     
-    # from mean example
     m <- x$getmatrix()
-    #browser()
     if(!is.null(m)) {
         message("getting cached data")
         return(m)
@@ -43,3 +43,32 @@ cacheSolve <- function(x, ...) {
     m <<- m
     m
 }
+
+
+## Example from console:
+
+## clears value of 'm' from memory:
+## > m <<- NULL
+
+## initializes matrix 'dave':
+## > dave
+##      [,1] [,2] [,3]
+## [1,]    1    5    4
+## [2,]    2    5    2
+## [3,]    3    8    8
+
+## runs functions to solve matrix & store solution to memory:
+## > cacheSolve(makeCacheMatrix(dave))
+## [,1]       [,2]       [,3]
+## [1,] -1.09090909  0.3636364  0.4545455
+## [2,]  0.45454545  0.1818182 -0.2727273
+## [3,] -0.04545455 -0.3181818  0.2272727
+
+## re-runs function (note 'getting cached data' below) - 
+## matrix solution loaded from memory:
+## > cacheSolve(makeCacheMatrix(dave))
+## getting cached data
+## [,1]       [,2]       [,3]
+## [1,] -1.09090909  0.3636364  0.4545455
+## [2,]  0.45454545  0.1818182 -0.2727273
+## [3,] -0.04545455 -0.3181818  0.2272727
